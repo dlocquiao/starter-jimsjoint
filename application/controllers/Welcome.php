@@ -27,7 +27,7 @@ class Welcome extends Application {
         //FIXME
 
         // Build a multi-dimensional array for reporting
-        $completed = $this->Orders->getOrder();
+        $completed = $this->orders->getOrder();
         $orders = array();
         foreach ($completed as $order) {
             $this1 = array(
