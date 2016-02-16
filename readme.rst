@@ -1,3 +1,8 @@
+Derrick Locquiao (DL)
+Vithusan Kanageswaran
+
+Conventions: Before Midterm Style
+
 ###############
 Fall2015 lab 04
 ###############
