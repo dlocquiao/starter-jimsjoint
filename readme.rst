@@ -1,4 +1,4 @@
-Derrick Locquiao (DL)
+Derrick Locquiao (DL.)
 Vithusan Kanageswaran
 
 Conventions: Before Midterm Style
