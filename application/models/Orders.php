@@ -37,5 +37,14 @@ class Orders extends MY_Model {
     function validate($num) {
         return false;
     }
+    
+    public function getOrder() {
+        $query = $this->db->query(''
+                . 'SELECT num, date, total '
+                . 'FROM orders '
+                . 'ORDER BY num ASC;');
+
+        return $query->result();
+    }
 
 }
