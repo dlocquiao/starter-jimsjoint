@@ -85,20 +85,38 @@ class Order extends Application {
         $this->data['title'] = 'Checking Out';
         $this->data['pagebody'] = 'show_order';
         $this->data['order_num'] = $order_num;
-        //FIXME
+        
+        $this->data['total'] = number_format($this->orders->total(order_num), 2);
+        $items = $this->orderitems->group($order_num);
+        foreach ($items as $item)
+        {
+            $menuitem = $this->menu->get($item->item);
+            $item->code = $menuitem->name;
+        }
+        $this->data['items'] = $items;
 
         $this->render();
     }
 
     // proceed with checkout
     function commit($order_num) {
-        //FIXME
+        if (!$this->orders->validate($order_num))
+            redirect('/order/display_menu/' . $order_num);
+        $record = $this->orders->get($order_num);
+        $record->data = data(DATE_ATOM);
+        $record->status = 'C';
+        $record->total = $this->orders->total($order_num);
+        $this->orders->update($record);
         redirect('/');
     }
 
     // cancel the order
     function cancel($order_num) {
-        //FIXME
+        
+        $this->orderitems->delete_some($order_num);
+        $record = $this->orders->get($order_num);
+        $record->status = 'X';
+        $this->orders->update($record);
         redirect('/');
     }
 
